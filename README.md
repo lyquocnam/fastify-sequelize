@@ -13,6 +13,8 @@ const fsequelize = require('fastify-sequelize')
 
 const sequelizeConfig = {
     instance: 'sequelize'
+    
+    // other sequelize config goes here
     dialect: 'sqlite',
 
     // SQLite only
