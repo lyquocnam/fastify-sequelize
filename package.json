@@ -1,0 +1,34 @@
+{
+  "name": "fastify-sequelize",
+  "version": "1.0.0",
+  "description": "Fastity plugin work with Sequelize (adapter for NodeJS -> Sqlite, Mysql, Mssql, Posgres)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --watch index.js --watch example.js --exec node example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "dsds"
+  },
+  "keywords": [
+    "fastify",
+    "fastify-plugin",
+    "sequelize",
+    "sqlite",
+    "mysql",
+    "postgres",
+    "mssql",
+    "nodejs"
+  ],
+  "author": "lyquocnam",
+  "license": "MIT",
+  "dependencies": {
+    "fastify-plugin": "^0.1.1",
+    "sequelize": "^4.20.1"
+  },
+  "devDependencies": {
+    "fastify": "^0.30.3",
+    "nodemon": "^1.12.1",
+    "sqlite3": "^3.1.13"
+  }
+}
