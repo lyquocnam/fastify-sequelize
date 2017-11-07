@@ -1,7 +1,7 @@
 const t = require('tap')
 const test = t.test
 const Fastify = require('fastify')
-const fastifySequelize = require('fastify-sequelize')
+const fastifySequelize = require('./')
 const { resolve } = require('path')
 const Sequelize = require('sequelize')
 
@@ -38,7 +38,7 @@ test('Sequelize instance name should work', t => {
     fastify.ready(err => {
         t.error(err)
         t.ok(fastify.db) // instance name
-        
+
         fastify.db.close()
         fastify.close()
     })
@@ -76,4 +76,3 @@ test('Sequelize should work fine with records', t => {
         fastify.close()
     })
 })
-
