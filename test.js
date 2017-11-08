@@ -66,13 +66,42 @@ test('Sequelize should work fine with records', t => {
             User.create({ name: 'Iron Man' })
                 .then(user => {
                     t.ok(user)
+                    fastify.close()
                 })
                 .catch(err => {
                     t.error(err)
+                    fastify.close()
                 })
         })
-        .catch(err => t.error(err))
-
-        fastify.close()
+        .catch(err => {
+          t.error(err)
+          fastify.close()
+        })
     })
+})
+
+test('Sequelize should close connection before Fastify closed', t => {
+  t.plan(2)
+
+  const fastify = Fastify()
+  fastify.register(fastifySequelize, {
+      dialect: 'sqlite',
+      storage: resolve(__dirname, 'db.sqlite')
+  })
+
+  fastify.ready(err => {
+      t.error(err)
+
+      fastify.close(() => {
+        fastify
+          .sequelize
+          .authenticate()
+          .then(() => {
+            t.error('connection not closed !')
+          })
+          .catch(err => {
+            t.ok(err)
+          });
+      })
+  })
 })

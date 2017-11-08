@@ -27,6 +27,13 @@ function plugin (fastify, options) {
 
     function runNext () {
         fastify.decorate(instance, sequelize)
+        fastify.addHook('onClose', (fastifyInstance, done) => {
+          sequelize.close()
+            .then(done)
+            .catch(err => {
+              done()
+            })
+        })
         return resolve()
     }
   })
