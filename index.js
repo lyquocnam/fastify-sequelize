@@ -22,8 +22,7 @@ function plugin (fastify, options) {
     fastify.decorate(instance, sequelize)
     fastify.addHook('onClose', (fastifyInstance, done) => {
       sequelize.close()
-        .then(done)
-        .catch(done)
+        .finally(done)
     })
   }
 }
