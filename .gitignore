@@ -3,3 +3,4 @@ node_modules
 *.sqlite
 *.lock
 .vscode
+.nyc_output

@@ -1,5 +1,5 @@
 const fastify = require('fastify')()
-const fsequelize = require('fastify-sequelize')
+const fsequelize = require('./index.js')
 const { resolve } = require('path')
 
 fastify.register(fsequelize, {
@@ -9,18 +9,17 @@ fastify.register(fsequelize, {
   // SQLite only
   storage: resolve(__dirname, 'db.sqlite')
 })
-.ready(() => {
-
-  // Test connection
-  fastify.db
+  .ready(() => {
+    // Test connection
+    fastify.db
       .authenticate()
       .then(() => {
-        console.log('Connection has been established successfully.');
+        console.log('Connection has been established successfully.')
       })
       .catch(err => {
-        console.error('Unable to connect to the database:', err);
-      });
-})
+        console.error('Unable to connect to the database:', err)
+      })
+  })
 
 fastify.listen(3000, () => {
   console.log('> listening on port 3000')
